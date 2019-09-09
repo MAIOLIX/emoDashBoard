@@ -7,6 +7,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import {VocalAnalyzeComponentComponent} from '../../vocal-analyze-component/vocal-analyze-component.component';
+import {TextAnalyzeComponentComponent} from '../../text-analyze-component/text-analyze-component.component';
 
 @NgModule({
     imports: [
@@ -23,6 +25,6 @@ import { DashboardComponent } from './dashboard.component';
         MatInputModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [DashboardComponent]
+    declarations: [DashboardComponent,VocalAnalyzeComponentComponent,TextAnalyzeComponentComponent]
 })
 export class DashboardModule {}

@@ -32,19 +32,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
     { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' }
 ];
 
-const ELEMENT_DATA2: EmoAudioFile[] = [
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Twilio', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Twilio2', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'},
-    {nome: 'Stefano', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'}
-
-
-];
 
 @Component({
     selector: 'app-dashboard',
@@ -64,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    
+
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -99,7 +86,7 @@ export class DashboardComponent implements OnInit {
                 }
 
             });
-            console.log(dati.length);
+            //console.log(dati.length);
             this.dataSource2.data = dati;
 
         });

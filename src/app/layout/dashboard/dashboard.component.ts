@@ -64,21 +64,7 @@ export class DashboardComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    loadData() {
-        console.log('inizio');
-        const requestUrl = 'http://emomaiolix.appspot.com/emotions/repository';
-
-        // const requestUrl = 'http://emomaiolix.appspot.com/emotions/repository';
-
-        this._httpClient.get<RepoData>(requestUrl).subscribe((res) => {
-            for (const appo of res) {
-                this.bucketData.push(appo);
-                console.log('lo sai che sono sempre stato il linguaggio piu bastardo...'); // console.log(this.bucketData.length);
-            }
-        });
-        console.log('fine');
-
-    }
+    
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -90,7 +76,7 @@ export class DashboardComponent implements OnInit {
         return  this._httpClient.get<RepoData[]>(requestUrl);
     }
     convertiRepoToFileEmo(r: RepoData) {
-        const result: EmoAudioFile = {};
+        let result: EmoAudioFile= {nome: 'Cliente1', url: 'gs:Cliente1.wav', audioData: 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav', action: 'ANALIZZA'};
         const url = 'http://emomaiolix.appspot.com/emotions/repository';
         result.nome = r.nome;
         result.url = r.uri;

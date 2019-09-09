@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VocalAnalyzeComponentComponent implements OnInit {
 
+  messaggio='Eccomi';
+  eccoci(){
+    alert(this.messaggio);
+  }
   constructor() { }
 
   ngOnInit() {

@@ -26,7 +26,7 @@
             <ng-container matColumnDef="azione">
                 <th mat-header-cell *matHeaderCellDef> AZIONE </th>
                 <td mat-cell *matCellDef="let element">
-                 <button mat-icon-button aria-label="Prova">
+                 <button mat-icon-button aria-label="Prova" (click)="myClickFunction(element.nome)">
                     <mat-icon color='primary'>autorenew</mat-icon>
                 </button>
 

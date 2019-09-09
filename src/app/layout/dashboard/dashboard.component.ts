@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
+import {VocalAnalyzeComponentComponent} from '../../vocal-analyze-component/vocal-analyze-component.component';
 
 
 export interface PeriodicElement {
@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
     bucketData: Array<RepoData> = [];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
 
 
 
@@ -68,11 +69,18 @@ export class DashboardComponent implements OnInit {
         result.nome = r.nome;
         result.url = r.uri;
         result.audioData = url + '?file=' + r.nome;
-        result.action = 'ANALIZZA';
+        result.action = r.nome;
         return result;
 
 
     }
+    myClickFunction(nomeFile){
+      //alert(nomeFile);
+      this.vocal.messaggio=nomeFile;
+      //this.vocal.eccoci();
+      //console.log(event);
+    }
+
     ngOnInit() {
         this.datiDalServer().subscribe(result => {
             const dati: EmoAudioFile[] = [];

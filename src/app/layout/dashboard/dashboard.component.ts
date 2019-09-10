@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {VocalAnalyzeComponentComponent} from '../../vocal-analyze-component/vocal-analyze-component.component';
+import{TextAnalyzeComponentComponent} from '../../text-analyze-component/text-analyze-component.component';
 
 
 export interface PeriodicElement {
@@ -51,6 +52,7 @@ export class DashboardComponent implements OnInit {
     FileSelected:string='Nessuna Selezione';
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
+    @ViewChild(TextAnalyzeComponentComponent)text: TextAnalyzeComponentComponent;
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -74,7 +76,8 @@ export class DashboardComponent implements OnInit {
     }
     myClickFunction(url,nome){
       this.vocal.execAnalysis(url);
-      this.FileSelected=nome;
+      this.text.execAnalysis(url);
+      this.FileSelected = nome;
       //alert(nomeFile);
       //this.vocal.messaggio=nomeFile;
       //this.vocal.datiSentimenti();

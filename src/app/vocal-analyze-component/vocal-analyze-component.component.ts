@@ -42,7 +42,7 @@ export class VocalAnalyzeComponentComponent implements OnInit {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    }
+    };
     //let options = new Request({ headers: headers });
     return this._httpClient.post<SentimentAPI>(endpoint, {
       "url": url

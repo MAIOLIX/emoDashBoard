@@ -24,7 +24,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="azione">
-                <th mat-header-cell *matHeaderCellDef> AZIONE </th>
+                <th mat-header-cell *matHeaderCellDef> ANALIZZA </th>
                 <td mat-cell *matCellDef="let element">
                  <button mat-icon-button aria-label="Prova" (click)="myClickFunction(element.url,element.nome)">
                     <mat-icon color='primary'>autorenew</mat-icon>
@@ -45,7 +45,7 @@
         <mat-card>
             <mat-card-header style="justify-content: center">
                 <mat-card-title>
-                    <h4 class="m-0">Analsi Vocale : {{FileSelected}}</h4>
+                    <h5 class="m-0">Analsi Vocale : {{FileSelected}}</h5>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content style='height:100%'>
@@ -57,7 +57,7 @@
         <mat-card>
             <mat-card-header style="justify-content: center">
                 <mat-card-title>
-                    <h3 class="m-0">Analisi Sentiment Testuale</h3>
+                    <h5 class="m-0">Analisi Testuale:{{FileSelected}}</h5>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content style='height:100%'>

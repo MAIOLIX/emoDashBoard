@@ -7,14 +7,7 @@ export interface Sentiment{
   sentiment:string;
   valore: number;
 }
-const EMOTION_STATIC : Sentiment[]=[
-  {sentiment:"arrabbiato",valore:98.9},
-  {sentiment:"arrabbiato",valore:98.9},
-  {sentiment:"arrabbiato",valore:98.9},
-  {sentiment:"arrabbiato",valore:98.9},
-  {sentiment:"arrabbiato",valore:98.9}
 
-];
 export interface SentimentAPI{
     anger: number;
     fear: number;
@@ -39,11 +32,8 @@ export class VocalAnalyzeComponentComponent implements OnInit {
   displayedColumns = ['sentimento', 'valore'];
 
   constructor(private _httpClient: HttpClient) {}
-  messaggio:string='Eccoci';
-  datiSentimenti(): void {
-    this.dataSource2.data=EMOTION_STATIC;
+  messaggio: string='Eccoci';
 
-  }
   getSentiment(file: string): Observable<SentimentAPI> {
     var url = this.adaptUrl(file);
     var endpoint = 'http://emomaiolix.appspot.com/emotions/audio/analyzeByUrl';
@@ -54,10 +44,10 @@ export class VocalAnalyzeComponentComponent implements OnInit {
       })
     }
     //let options = new Request({ headers: headers });
-    return this._httpClient.post<SentimentAPI>(endpoint,{
+    return this._httpClient.post<SentimentAPI>(endpoint, {
       "url": url
 
-    },httpOptions);
+    }, httpOptions);
 
 
   }

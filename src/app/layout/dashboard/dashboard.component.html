@@ -1,10 +1,18 @@
 
 
+
+
+
 <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
     <div fxFlex>
-    <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Cerca">
-</mat-form-field>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Cerca">  
+        </mat-form-field>
+        
+    </div>
+    
+    
+    <div fxFlex>
         <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
             <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef>FILE</th>
@@ -55,6 +63,14 @@
     </div>
     <div fxFlex >
         <mat-card>
+            <div [hidden]="textSpinner">
+            <mat-progress-spinner class='spinner-container' 
+                [mode]="'indeterminate'"
+                [color]="primary"
+                [value]="50"
+                [diameter]="20">
+            </mat-progress-spinner>
+           </div>
             <mat-card-header style="justify-content: center">
                 <mat-card-title>
                     <h5 class="m-0">Analisi Testuale:{{FileSelected}}</h5>

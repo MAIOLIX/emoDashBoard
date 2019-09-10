@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
     @ViewChild(TextAnalyzeComponentComponent)text: TextAnalyzeComponentComponent;
-
+    
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -75,9 +75,11 @@ export class DashboardComponent implements OnInit {
 
     }
     myClickFunction(url,nome){
+      this.textSpinner=false;
       this.vocal.execAnalysis(url);
       this.text.execAnalysis(url);
       this.FileSelected = nome;
+      
       //alert(nomeFile);
       //this.vocal.messaggio=nomeFile;
       //this.vocal.datiSentimenti();
@@ -85,8 +87,9 @@ export class DashboardComponent implements OnInit {
       //sthis.vocal.eccoci();
       //console.log(event);
     }
-
+    textSpinner : Boolean;
     ngOnInit() {
+        this.textSpinner= true;
         this.datiDalServer().subscribe(result => {
             const dati: EmoAudioFile[] = [];
             result.forEach(element => {
@@ -101,6 +104,8 @@ export class DashboardComponent implements OnInit {
             });
             //console.log(dati.length);
             this.dataSource2.data = dati;
+            
+           
 
         });
         this.FileSelected='Nessuna Selezione';

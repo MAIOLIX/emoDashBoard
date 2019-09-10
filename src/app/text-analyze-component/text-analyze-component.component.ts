@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {DashboardComponent} from '../layout/dashboard/dashboard.component';
 
 export interface TextItem {
   content: string;
@@ -55,6 +56,7 @@ export class TextAnalyzeComponentComponent implements OnInit {
   execAnalysis(myUrl: string): void {
     this.getTextSentiment(myUrl).subscribe(result => {
       this.messaggio = JSON.stringify(result);
+      
       //alert(JSON.stringify(result));
     });
 

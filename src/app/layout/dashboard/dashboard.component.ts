@@ -52,8 +52,6 @@ export class DashboardComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
 
-
-
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -77,7 +75,7 @@ export class DashboardComponent implements OnInit {
     myClickFunction(nomeFile){
       //alert(nomeFile);
       this.vocal.messaggio=nomeFile;
-      //this.vocal.eccoci();
+      //sthis.vocal.eccoci();
       //console.log(event);
     }
 

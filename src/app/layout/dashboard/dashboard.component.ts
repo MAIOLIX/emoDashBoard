@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
     dataSource2 = new MatTableDataSource();
     places: Array<any> = [];
     bucketData: Array<RepoData> = [];
-
+    FileSelected:string='Nessuna Selezione';
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
 
@@ -72,8 +72,9 @@ export class DashboardComponent implements OnInit {
 
 
     }
-    myClickFunction(nomeFile){
-      this.vocal.execAnalysis(nomeFile);
+    myClickFunction(url,nome){
+      this.vocal.execAnalysis(url);
+      this.FileSelected=nome;
       //alert(nomeFile);
       //this.vocal.messaggio=nomeFile;
       //this.vocal.datiSentimenti();
@@ -99,6 +100,7 @@ export class DashboardComponent implements OnInit {
             this.dataSource2.data = dati;
 
         });
+        this.FileSelected='Nessuna Selezione';
         this.dataSource2.paginator = this.paginator;
     }
 }

@@ -73,8 +73,11 @@ export class DashboardComponent implements OnInit {
 
     }
     myClickFunction(nomeFile){
+      this.vocal.execAnalysis(nomeFile);
       //alert(nomeFile);
-      this.vocal.messaggio=nomeFile;
+      //this.vocal.messaggio=nomeFile;
+      //this.vocal.datiSentimenti();
+      //var pippo=this.vocal.getSentiment('gs://audio-bucket-emotions2/emovo/neu-m3-l2.wav');
       //sthis.vocal.eccoci();
       //console.log(event);
     }

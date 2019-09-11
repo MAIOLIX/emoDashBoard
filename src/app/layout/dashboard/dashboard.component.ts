@@ -54,9 +54,11 @@ export class DashboardComponent implements OnInit {
     myClickFunction(url,nome){
         this.vocal.hiddenLoading=false;
         this.vocal.hiddenPanel=true;
+        this.vocal.FileChoosed=nome;
         this.vocal.execAnalysis(url);
         this.text.loadDivVisible = true;
         this.text.divDataHidden = true;
+        this.text.FileChoosed=nome;
         this.text.execAnalysis(url);
     }
     ngOnInit() {

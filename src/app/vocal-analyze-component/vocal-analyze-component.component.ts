@@ -35,6 +35,7 @@ export class VocalAnalyzeComponentComponent implements OnInit {
   messaggio: string='Eccoci';
   hiddenLoading = true;
   hiddenPanel = true;
+  FileChoosed = '';
 
 
   getSentiment(file: string): Observable<SentimentAPI> {
@@ -69,6 +70,7 @@ export class VocalAnalyzeComponentComponent implements OnInit {
       this.messaggio=JSON.stringify(result);
       this.hiddenLoading = true;
       this.hiddenPanel = false;
+      
 
     });
 

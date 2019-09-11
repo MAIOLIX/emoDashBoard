@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {DashboardComponent} from '../layout/dashboard/dashboard.component';
+import { MatTableDataSource, MatPaginator} from '@angular/material';
 
 export interface TextItem {
   content: string;
@@ -13,6 +13,10 @@ export interface TextSentimentApi{
   items: TextItem[];
 }
 
+const datiFake: TextItem[] = [
+{content: 'suca','execTime':0, 'magnitude':1, 'score':2}
+
+];
 
 @Component({
   selector: 'text-analyze-component',
@@ -20,16 +24,13 @@ export interface TextSentimentApi{
   styleUrls: ['./text-analyze-component.component.scss']
 })
 export class TextAnalyzeComponentComponent implements OnInit {
-
+  dataSource = new MatTableDataSource();
+  displayedColumns = ['frase', 'punteggio', 'intensita'];
   messaggio: string;
   loadDivVisible = false;
   divDataHidden = true;
   FileChoosed = '';
-  ngAfterContentChecked(): void {
-    //Called after every check of the component's or directive's content.
-    //Add 'implements AfterContentChecked' to the class.
-    
-  }
+ 
   constructor(private _httpClient: HttpClient) { }
 
   adaptUrl(myUrl:string):string{
@@ -42,7 +43,7 @@ export class TextAnalyzeComponentComponent implements OnInit {
   }
 
 
-  getTextSentiment(urlo: string): Observable<TextSentimentApi> {
+  getTextSentiment(urlo: string): Observable<TextItem[]> {
     var url = this.adaptUrl(urlo);
     //alert(url);
     const endpoint = 'https://emomaiolix.appspot.com/emotions/sentiment/analyzeFromFileByUrl';
@@ -51,22 +52,22 @@ export class TextAnalyzeComponentComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    return this._httpClient.post<TextSentimentApi>(endpoint, {
+    return this._httpClient.post<TextItem[]>(endpoint, {
       "url": url
 
     }, httpOptions);
 
   }
   execAnalysis(myUrl: string): void {
+    const dati: TextItem[] = [];
     this.getTextSentiment(myUrl).subscribe(result => {
-      this.messaggio = JSON.stringify(result);
-      this.loadDivVisible=false;
-      this.divDataHidden=false;
+      this.loadDivVisible = false;
+      this.divDataHidden = false;
+      this.dataSource.data = result;
     });
   }
 
   ngOnInit() {
-
 
     this.messaggio = 'ECCOCI';
   }

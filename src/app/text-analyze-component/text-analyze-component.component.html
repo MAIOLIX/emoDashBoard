@@ -1,12 +1,26 @@
 <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="!loadDivVisible">
-    <div fxFlex>
+    
     <img src="assets/images/loading.gif">
     <h4>File in analisi : {{FileChoosed}}</h4>
-    </div>
 </div>
 
 <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="divDataHidden">
-    <div fxFlex>
- {{messaggio}}
-    </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+            <ng-container matColumnDef="frase" >
+                <th mat-header-cell *matHeaderCellDef ><p>FRASE</p></th>
+                <td width="50%%" mat-cell *matCellDef="let element" style="text-align:left"> {{element.content}} </td>
+            </ng-container>
+            <ng-container matColumnDef="punteggio">
+                <th mat-header-cell *matHeaderCellDef style="text-align:right">PUNTEGGIO</th>
+                <td width="25%" mat-cell *matCellDef="let element" style="text-align:right"> {{element.score.toFixed(2)}} </td>
+            </ng-container>
+            <ng-container matColumnDef="intensita">
+                <th mat-header-cell *matHeaderCellDef style="text-align:right">INTENSITA'</th>
+                <td width="25%" mat-cell *matCellDef="let element" style="text-align:right"> {{element.magnitude.toFixed(2)}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
 </div>

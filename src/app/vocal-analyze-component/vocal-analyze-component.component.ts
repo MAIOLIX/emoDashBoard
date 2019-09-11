@@ -33,6 +33,9 @@ export class VocalAnalyzeComponentComponent implements OnInit {
 
   constructor(private _httpClient: HttpClient) {}
   messaggio: string='Eccoci';
+  hiddenLoading = true;
+  hiddenPanel = true;
+
 
   getSentiment(file: string): Observable<SentimentAPI> {
     var url = this.adaptUrl(file);
@@ -64,6 +67,8 @@ export class VocalAnalyzeComponentComponent implements OnInit {
     //alert(url);
     this.getSentiment(url).subscribe(result=>{
       this.messaggio=JSON.stringify(result);
+      this.hiddenLoading = true;
+      this.hiddenPanel = false;
 
     });
 

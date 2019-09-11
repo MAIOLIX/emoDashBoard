@@ -1,7 +1,11 @@
+ <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="hiddenLoading">
+        <div fxFlex>
+            <img src="assets/images/loading.gif">
+        </div>
+</div>
 
 
-
-<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="hiddenPanel">
     <div fxFlex>
  {{messaggio}}
     </div>

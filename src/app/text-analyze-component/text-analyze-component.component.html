@@ -1,5 +1,10 @@
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="!loadDivVisible">
+    <div fxFlex>
+    <img src="assets/images/loading.gif">
+    </div>
+</div>
 
-<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="divDataHidden">
     <div fxFlex>
  {{messaggio}}
     </div>

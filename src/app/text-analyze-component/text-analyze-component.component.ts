@@ -22,15 +22,20 @@ export interface TextSentimentApi{
 export class TextAnalyzeComponentComponent implements OnInit {
 
   messaggio: string;
-
+  loadDivVisible = false;
+  divDataHidden = true;
+  ngAfterContentChecked(): void {
+    //Called after every check of the component's or directive's content.
+    //Add 'implements AfterContentChecked' to the class.
+    
+  }
   constructor(private _httpClient: HttpClient) { }
 
   adaptUrl(myUrl:string):string{
     var result:string='gs';
     var re='gs://audio-bucket-emotions2/';
     var newString=myUrl.replace(re,':');
-    result=result+newString;
-    //alert(result);
+    result = result + newString;
     return result;
 
   }
@@ -39,8 +44,8 @@ export class TextAnalyzeComponentComponent implements OnInit {
   getTextSentiment(urlo: string): Observable<TextSentimentApi> {
     var url = this.adaptUrl(urlo);
     //alert(url);
-    var endpoint = 'https://emomaiolix.appspot.com/emotions/sentiment/analyzeFromFileByUrl';
-    var httpOptions = {
+    const endpoint = 'https://emomaiolix.appspot.com/emotions/sentiment/analyzeFromFileByUrl';
+    const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -50,16 +55,13 @@ export class TextAnalyzeComponentComponent implements OnInit {
 
     }, httpOptions);
 
-    return null;
-
   }
   execAnalysis(myUrl: string): void {
     this.getTextSentiment(myUrl).subscribe(result => {
       this.messaggio = JSON.stringify(result);
-      
-      //alert(JSON.stringify(result));
+      this.loadDivVisible=false;
+      this.divDataHidden=false;
     });
-
   }
 
   ngOnInit() {

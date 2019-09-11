@@ -36,6 +36,12 @@ export class VocalAnalyzeComponentComponent implements OnInit {
   hiddenLoading = true;
   hiddenPanel = true;
   FileChoosed = '';
+  
+  AngryEmotion ="" ;
+  NeutralEmotion ="";
+  HappyEmotion = "";
+  SadEmotion = "";
+  FearEmotion = "";
 
 
   getSentiment(file: string): Observable<SentimentAPI> {
@@ -55,7 +61,7 @@ export class VocalAnalyzeComponentComponent implements OnInit {
 
 
   }
-  adaptUrl(myUrl:string):string{
+  adaptUrl(myUrl:string): string {
     var result:string='gs';
     var re='gs://audio-bucket-emotions2/';
     var newString=myUrl.replace(re,':');
@@ -68,6 +74,17 @@ export class VocalAnalyzeComponentComponent implements OnInit {
     //alert(url);
     this.getSentiment(url).subscribe(result=>{
       this.messaggio=JSON.stringify(result);
+      
+
+
+
+
+      this.AngryEmotion=(result.anger*100).toFixed(1)+"%";
+      this.NeutralEmotion=(result.netrual*100).toFixed(1)+"%";
+      this.SadEmotion=(result.sadness*100).toFixed(1)+"%";
+      this.FearEmotion=(result.fear*100).toFixed(1)+"%";
+      this.HappyEmotion=(result.happiness*100).toFixed(1)+"%";
+      
       this.hiddenLoading = true;
       this.hiddenPanel = false;
       

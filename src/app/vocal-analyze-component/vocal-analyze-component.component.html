@@ -4,10 +4,61 @@
             <h4>Analisi file : {{FileChoosed}}</h4>
         </div>
 </div>
-
-
-<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="hiddenPanel">
-    <div fxFlex>
- {{messaggio}}
+<div [hidden]="hiddenPanel">
+<div 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+    <div  fxFlex="33%">
+        <mat-card class="example-card neutral">
+	        <mat-card-header>
+	        	<mat-card-title>NEUTRO</mat-card-title>
+		        <mat-card-subtitle><p>{{NeutralEmotion}}</p></mat-card-subtitle>
+	            </mat-card-header>
+        </mat-card>
+  </div>
+  <div  fxFlex="33%">
+        <mat-card class="example-card angry">
+	        <mat-card-header>
+	        	<mat-card-title>RABBIA</mat-card-title>
+		        <mat-card-subtitle><p>{{AngryEmotion}}</p></mat-card-subtitle>
+	            </mat-card-header>
+        </mat-card>
+  </div>
+  <div  fxFlex>
+      <mat-card class="example-card happy">
+	        <mat-card-header>
+	        	<mat-card-title>GIOIA</mat-card-title>
+		        <mat-card-subtitle><p>{{HappyEmotion}}</p></mat-card-subtitle>
+	            </mat-card-header>
+        </mat-card>
     </div>
+</div>
+<div 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+    <div  fxFlex="33%">
+        <mat-card class="example-card sad">
+	        <mat-card-header>
+	        	<mat-card-title >TRISTEZZA</mat-card-title>
+		        <mat-card-subtitle><p>{{SadEmotion}}</p></mat-card-subtitle>
+	            </mat-card-header>
+        </mat-card>
+  </div>
+  <div  fxFlex="33%">
+        <mat-card class="example-card fear">
+	        <mat-card-header>
+	        	<mat-card-title>PAURA</mat-card-title>
+		        <mat-card-subtitle ><p>{{FearEmotion}}</p></mat-card-subtitle>
+	            </mat-card-header>
+        </mat-card>
+  </div>
+  <div  fxFlex>
+  </div>
+</div>
 </div>

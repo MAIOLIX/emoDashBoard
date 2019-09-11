@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
         this.text.divDataHidden = true;
         this.text.FileChoosed=nome;
         this.text.execAnalysis(url);
+        this.FileSelected=nome;
     }
     ngOnInit() {
         this.hiddenLoading=false;

@@ -1,18 +1,56 @@
 table {
-  width: 100%;
+    width: 100%;
 }
+
 .mat-card {
-  text-align: left;
-  img {
-      border-radius: 5px;
-      margin-top: -25px;
-  }
+    text-align: left;
+    color: white;
+    img {
+        border-radius: 5px;
+        margin-top: -25px;
+    }
 }
+
+.mat-card-subtitle {
+    color: white;
+}
+
 .mat-table {
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-      0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .mb-20 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.example-card {
+    max-width: 300px;
+    background-color: lightblue;
+    margin: 4px;
+    color: white;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.angry {
+    background: linear-gradient(60deg, #ec407a, #d81b60);
+}
+
+.happy {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+}
+
+.neutral {
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+}
+
+.fear {
+    background: linear-gradient(315deg, #2a2a72 0%, #2a2a72 74%);
+}
+
+.sad {
+    background: linear-gradient(60deg, #5F0A87, #5F0A87);
 }

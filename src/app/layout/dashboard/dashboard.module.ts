@@ -26,6 +26,6 @@ import {TextAnalyzeComponentComponent} from '../../text-analyze-component/text-a
         MatProgressSpinnerModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [DashboardComponent,VocalAnalyzeComponentComponent,TextAnalyzeComponentComponent]
+    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent]
 })
 export class DashboardModule {}

@@ -30,7 +30,8 @@
                 "src/styles/styles.scss"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
+              "node_modules/chart.js/dist/Chart.js",
+
             ]
           },
           "configurations": {

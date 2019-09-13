@@ -29,9 +29,9 @@ export class DashboardComponent implements OnInit {
     FileSelected = 'Nessuna Selezione';
     hiddenLoading = true;
     hiddenPanel = true;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(VocalAnalyzeComponentComponent)vocal: VocalAnalyzeComponentComponent;
-    @ViewChild(TextAnalyzeComponentComponent)text: TextAnalyzeComponentComponent;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(VocalAnalyzeComponentComponent, { static: true })vocal: VocalAnalyzeComponentComponent;
+    @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
     
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace

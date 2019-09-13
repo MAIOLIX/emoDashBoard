@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {Recorder} from 'recorder-js';
+
+
 @Component({
   selector: 'recording-component',
   templateUrl: './recording-component.component.html',
@@ -12,9 +13,10 @@ export class RecordingComponentComponent implements OnInit {
   gumStream: any; // stream from getUserMedia()
   rec: any; 		 // Recorder.js object
   input: any;   // MediaStreamAudioSourceNode we'll be recording
-  AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
+  AudioContext =
   audioContext: any; // audio context to help us record
-
+  audioSrc= '';
+  isAudioHidden= true;
 
 
   constructor() {}
@@ -40,8 +42,13 @@ export class RecordingComponentComponent implements OnInit {
   stopRecording(): void {
     this.rec.stop();
     this.gumStream.getAudioTracks()[0].stop();
+    this.rec.exportWAV(this.createDownloadLink);
   }
-  createDownloadLink(blob: any): void {
+  createDownloadLink(blob: any) {
+    var url = URL.createObjectURL(blob);
+    this.isAudioHidden=false;
+    alert(url);
+
 
   }
 

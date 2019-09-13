@@ -1,1 +1,11 @@
  <h1> Restart Again</h1>
+ <div id="content">
+  <div id="buttons">
+    <h1>bottoni</h1>
+    <button id="rec" (click)="startRecording()">registra</button>
+    <button id="stop" (click)="stopRecording()">stop</button>
+  </div>
+  <div id="result" [hidden]="isAudioHidden">
+  <h1>result</h1>
+  </div>
+ </div>

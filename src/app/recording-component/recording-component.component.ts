@@ -14,7 +14,7 @@ export class RecordingComponentComponent implements OnInit {
   input: any;   // MediaStreamAudioSourceNode we'll be recording
   AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
   audioContext: any; // audio context to help us record
-  
+
 
 
   constructor() {}

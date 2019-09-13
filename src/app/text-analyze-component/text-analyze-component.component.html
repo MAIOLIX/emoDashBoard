@@ -5,7 +5,7 @@
 </div>
 
 <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="divDataHidden">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+  <table height="100%" mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
             <ng-container matColumnDef="frase" >
                 <th mat-header-cell *matHeaderCellDef ><p>FRASE</p></th>
                 <td width="50%" mat-cell *matCellDef="let element" style="text-align:left"> {{element.content}} </td>

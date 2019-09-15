@@ -33,7 +33,7 @@ function stopRecording(button) {
 
     // create WAV download link using audio data blob
     createDownloadLink();
-    recorder.clear();
+    //recorder.clear();
 
 }
 
@@ -72,6 +72,7 @@ function uploadOnBucket(filename, directory) {
         xhr.send(fd);
         //alert('finito forse');
     });
+    recorder.clear();
 }
 
 function getRecorder() {
@@ -120,6 +121,23 @@ var recordObjectMaiolix = (function() {
         }
     }
 })(recordObjectMaiolix || {});
+
+function attivaMic(){
+  try {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+    audio_context=new AudioContext;
+    __log('Audio context set up.');
+    __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+  } catch (error) {
+    alert('No web audio support in this browser!');
+  }
+  navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
+    __log('No live audio input: ' + e);
+  });
+}
+
 
 var recorderObject = (function() {
     return {

@@ -11,7 +11,7 @@ var recorder;
 
 function startUserMedia(stream) {
     var input = audio_context.createMediaStreamSource(stream);
-    __log('Media stream created.');
+    console.log('Media stream created.');
 
     // Uncomment if you want the audio to feedback directly
     //input.connect(audio_context.destination);
@@ -24,16 +24,23 @@ function startUserMedia(stream) {
 
 function startRecording(button) {
     recorder && recorder.record();
-    __log('Recording...');
+    console.log('Recording...');
 }
 
 function stopRecording(button) {
     recorder && recorder.stop();
-    __log('Stopped recording.');
+    console.log('Stopped recording.');
 
     // create WAV download link using audio data blob
     createDownloadLink();
     //recorder.clear();
+
+}
+function creaLink(){
+  recorder.exportWAV(function(blob){
+    var url = URL.createObjectURL(blob);
+    return url;
+  });
 
 }
 
@@ -81,16 +88,18 @@ function getRecorder() {
 }
 
 function enableMic() {
-    //alert("enableMic");
+   __log('entrato in enableMic');
     try {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
         window.URL = window.URL || window.webkitURL;
+        var constraints = { audio: true, video:false }
         audio_context = new AudioContext();
-        __log('Audio context set up.');
-        __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+
+        console.log('Audio context set up.');
+        console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
     } catch (error) {
-        __log(e);
+        console.log(e);
     }
 
 }
@@ -128,13 +137,13 @@ function attivaMic(){
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
     window.URL = window.URL || window.webkitURL;
     audio_context=new AudioContext;
-    __log('Audio context set up.');
-    __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+    console.log('Audio context set up.');
+    console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
   } catch (error) {
-    alert('No web audio support in this browser!');
+    console.log('No web audio support in this browser!');
   }
   navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
-    __log('No live audio input: ' + e);
+    console.log('No live audio input: ' + e);
   });
 }
 

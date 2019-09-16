@@ -8,8 +8,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 
 import { Screen1RoutingModule } from './screen1-routing.module';
-import {RecordingComponentComponent} from '../../recording-component/recording-component.component';
-  import { from } from 'rxjs';
+import {RecordingComponentComponent} from '../../FIleManagement/recording-component/recording-component.component';
+import { from } from 'rxjs';
 @NgModule({
   declarations: [Screen1Component, RecordingComponentComponent],
   imports: [

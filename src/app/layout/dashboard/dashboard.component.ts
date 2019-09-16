@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {VocalAnalyzeComponentComponent} from '../../vocal-analyze-component/vocal-analyze-component.component';
-import {TextAnalyzeComponentComponent} from '../../text-analyze-component/text-analyze-component.component';
+import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
+import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze-component/text-analyze-component.component';
 
 export interface EmoAudioFile {
     nome: string;
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent, { static: true })vocal: VocalAnalyzeComponentComponent;
     @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
-    
+
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
             this.dataSource2.data = dati;
             this.hiddenLoading = true;
             this.hiddenPanel=false;
-           
+
 
         });
         this.FileSelected='Nessuna Selezione';

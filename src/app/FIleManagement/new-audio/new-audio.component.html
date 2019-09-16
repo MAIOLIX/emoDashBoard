@@ -1,1 +1,15 @@
-<p>new-audio works!</p>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nome del File" #fileInput >
+  </mat-form-field>
+  <mat-form-field>
+
+  <mat-label>Directory Disponibili</mat-label>
+  <select #dirInput matNativeControl required>
+      <option *ngFor="let appo of elencoDirectory" [value]="appo">
+      {{appo}}
+    </option>
+  </select>
+</mat-form-field>
+<button mat-fab color="primary" (click)="mioClick(fileInput.value,dirInput.value)">Primary</button>
+<p>{{nomeFile}}</p>

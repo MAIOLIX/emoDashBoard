@@ -32,7 +32,7 @@ function stopRecording(button) {
     console.log('Stopped recording.');
 
     // create WAV download link using audio data blob
-    createDownloadLink();
+    //createDownloadLink();
     //recorder.clear();
 
 }

@@ -8,7 +8,7 @@
       <div class="container-fluid container-fixed-lg bg-white">
         <!-- START PANEL -->
         <div class="panel panel-transparent">
-      <button mat-fab color="warn" id = "record" (click)="start(this);" [ngClass]='{disabled: isOn}'>
+      <button mat-fab color="warn" id = "record" (click)="start(this);" [disabled]="true" [ngClass]='{disabled: isOn}'>
        <mat-icon>record_voice_over</mat-icon>
       </button>
 		  &nbsp;

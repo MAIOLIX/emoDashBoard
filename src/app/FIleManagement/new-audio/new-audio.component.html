@@ -11,9 +11,9 @@
 
 <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
     <div fxFlex >
-        <mat-card>
-              <mat-card-content style='height:100px'>
-                <mat-form-field style='padding-left:20px'>
+      <div class="mb-20" fxLayout="column" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+          <div fxFlex>
+           <mat-form-field style='padding-left:20px'>
                   <input matInput placeholder="Nome del File" #fileInput >
                 </mat-form-field>
                 <mat-form-field style='padding-left:10px'>
@@ -28,7 +28,7 @@
                     <mat-label>Emozione</mat-label>
                       <select #EmoInput matNativeControl required>
                         <option value="NEU">Neutro</option>
-                        <option value="GIO">Goia</option>
+                        <option value="GIO">Gioia</option>
                         <option value="RAB">Rabbia</option>
                         <option value="PAU">Paura</option>
                         <option value="TRI">Tristezza</option>
@@ -41,24 +41,21 @@
                         <option value="F">Donna</option>
                       </select>
                   </mat-form-field>
-            </mat-card-content>
-   <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Registra</button>
-                    <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Carica</button>
-                    <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">reset</button>
-
-        </mat-card>
+          </div>
+          <div fxFlex style="float:right">
+              <button mat-fab color="primary"  (click)="startRecording(fileInput.value,dirInput.value,EmoInput.value,SexInput.value)">Registra</button>
+              &nbsp;
+              <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Carica</button>
+              &nbsp;
+              <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Reset</button>
+          </div>
+      </div>
     </div>
-     <div fxFlex >
-        <mat-card>
-            <mat-card-header style="justify-content: center">
-                <mat-card-title>
-                    <h5 class="m-0">Nuovo Caricamento</h5>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content style='height:100px'>
-           SO IDIOTA
-            </mat-card-content>
-        </mat-card>
+     <div fxFlex [hidden]="isHiddenRecording">
+        <div class="mb-20" fxLayout="column" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+          <recording-component></recording-component>
+        </div>
+
     </div>
 </div>
 

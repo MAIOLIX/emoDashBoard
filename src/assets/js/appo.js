@@ -18,8 +18,8 @@ function startUserMedia(stream) {
     //__log('Input connected to audio context destination.');
 
     recorder = new Recorder(input);
-    __log(recorder);
-    __log('Recorder initialised.');
+    console.log(recorder);
+    console.log('Recorder initialised.');
 }
 
 function startRecording(button) {
@@ -161,14 +161,14 @@ var recorderObject = (function() {
                         window.URL = window.URL || window.webkitURL;
 
                         audio_context = new AudioContext;
-                        __log('Audio context set up.');
-                        __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+                        console.log('Audio context set up.');
+                        console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
                     } catch (e) {
                         alert('No web audio support in this browser!');
                     }
 
                     navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
-                        __log('No live audio input: ' + e);
+                      console.log('No live audio input: ' + e);
                     });
                 };
             })(window.jQuery);

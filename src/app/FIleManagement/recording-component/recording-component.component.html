@@ -1,21 +1,27 @@
- <h1> Restart Again</h1>
-  <div class="page-content-wrapper ">
-    <!-- START PAGE CONTENT -->
-	<div class="content ">
-      <button class="btn btn-primary" id = "stop" (click)="enableMic();" [ngClass]='{disabled: isOff}'>EnableMic</button>
 
+  <div class="page-content-wrapper ">
+ 	<div class="content ">
+      <button class="btn btn-primary" id = "stop" (click)="enableMic();" [ngClass]='{disabled: isOff}'>EnableMic</button>
+      <p>{{nomeFile}}</p>
+      <p>{{directory}}</p>
       <!-- START CONTAINER FLUID -->
       <div class="container-fluid container-fixed-lg bg-white">
         <!-- START PANEL -->
         <div class="panel panel-transparent">
-      <button class="btn btn-primary" id = "record" (click)="start(this);" [ngClass]='{disabled: isOn}'>record</button>
-		  <button class="btn btn-primary" id = "stop" (click)="stop(this);" [ngClass]='{disabled: isOff}'>stop</button>
-      <button class="btn btn-primary" id = "stop" (click)="upload();" [ngClass]='{disabled: isOff}'>Upload</button>
-		  <h2>Recordings</h2>
-		  <ul id="recordingslist"></ul>
+      <button mat-fab color="warn" id = "record" (click)="start(this);" [ngClass]='{disabled: isOn}'>
+       <mat-icon>record_voice_over</mat-icon>
+      </button>
+		  &nbsp;
+      <button mat-fab color="disable" id = "stop" (click)="stop(this);" [ngClass]='{disabled: isOff}'>
+       <mat-icon>stop</mat-icon>
 
-		  <h2>Log</h2>
-		  <pre id="log"></pre>
+      </button>
+      &nbsp;
+      <button mat-fab color="disable" id = "stop" (click)="upload();" [ngClass]='{disabled: isOff}'>
+       <mat-icon>cloud_upload</mat-icon>
+
+      </button>
+
 		 </div>
   <!-- END PANEL -->
 </div>

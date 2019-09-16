@@ -11,9 +11,10 @@ import { Screen1RoutingModule } from './screen1-routing.module';
 //import {RecordingComponentComponent} from '../../FIleManagement/recording-component/recording-component.component';
 import {AudioTableComponent} from '../../FIleManagement/audio-table/audio-table.component';
 import {NewAudioComponent} from '../../FIleManagement/new-audio/new-audio.component';
+import {RecordingComponentComponent} from '../../FIleManagement/recording-component/recording-component.component';
 import { from } from 'rxjs';
 @NgModule({
-  declarations: [Screen1Component, AudioTableComponent, NewAudioComponent],
+  declarations: [Screen1Component, AudioTableComponent, NewAudioComponent,RecordingComponentComponent],
   imports: [
     CommonModule,
     Screen1RoutingModule,

@@ -5,9 +5,10 @@ import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatPagin
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {NewAudioComponent} from './new-audio.component';
+import {RecordingComponentComponent} from '../recording-component/recording-component.component';
 import { from } from 'rxjs';
 @NgModule({
-  declarations: [NewAudioComponent],
+  declarations: [NewAudioComponent,RecordingComponentComponent],
   imports: [
     CommonModule,
     MatGridListModule,

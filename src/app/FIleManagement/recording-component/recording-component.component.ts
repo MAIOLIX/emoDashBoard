@@ -19,7 +19,9 @@ export class RecordingComponentComponent implements OnInit {
   audioIcon: string;
   isOn: boolean;
   isOff: boolean;
-
+  nomeFile: string;
+  directory: string;
+  colorRec:string ="warn";
 
 
   constructor() {}

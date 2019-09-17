@@ -1,30 +1,40 @@
-<div class="example-container">
-
-</div>
-<div class="example-container">
-
-
-</div>
-<div class='bottonArea'>
-
-</div>
-
 <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
-    <div fxFlex >
-      <div class="mb-20" fxLayout="column" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
-          <div fxFlex>
-           <mat-form-field style='padding-left:20px'>
-                  <input matInput placeholder="Nome del File" #fileInput >
-                </mat-form-field>
-                <mat-form-field style='padding-left:10px'>
-                <mat-label>Directory Disponibili</mat-label>
-                  <select #dirInput matNativeControl required>
-                    <option *ngFor="let appo of elencoDirectory" [value]="appo">
-                      {{appo}}
-                    </option>
-                  </select>
-                </mat-form-field>
-                 <mat-form-field style='padding-left:20px'>
+  <div fxFlex>
+<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+  <div fxFlex >
+    &nbsp;
+    <button mat-fab color="primary"  (click)="startRecording(fileInput.value,dirInput.value,EmoInput.value,SexInput.value)" [disabled]="isDisableMic">
+      <mat-icon>mic</mat-icon>
+     </button>
+      &nbsp;
+     <button mat-fab color="primary" [disabled]="isDisableUpload"  (click)="mioClick(fileInput.value,dirInput.value)">
+      <mat-icon>folder_open</mat-icon>
+     </button>
+      &nbsp;
+     <button mat-fab color="primary" [disabled]="isDisableReset" (click)="reset()">
+      <mat-icon>restore</mat-icon>
+     </button>
+  </div>
+</div>
+
+  <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px" >
+  <div fxFlex [hidden]="isHiddenRecording" >
+    <mat-form-field style='padding-left:20px'>
+      <input matInput placeholder="Nome del File" #fileInput >
+    </mat-form-field>
+    <mat-form-field style='padding-left:10px'>
+      <mat-label>Directory Disponibili</mat-label>
+        <select #dirInput matNativeControl required>
+          <option *ngFor="let appo of elencoDirectory" [value]="appo">
+            {{appo}}
+          </option>
+        </select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px" >
+  <div fxFlex [hidden]="isHiddenRecording" >
+   <mat-form-field style='padding-left:20px'>
                     <mat-label>Emozione</mat-label>
                       <select #EmoInput matNativeControl required>
                         <option value="NEU">Neutro</option>
@@ -41,23 +51,12 @@
                         <option value="F">Donna</option>
                       </select>
                   </mat-form-field>
-          </div>
-          <div fxFlex style="float:right">
-              <button mat-fab color="primary"  (click)="startRecording(fileInput.value,dirInput.value,EmoInput.value,SexInput.value)">Registra</button>
-              &nbsp;
-              <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Carica</button>
-              &nbsp;
-              <button mat-fab color="primary"  (click)="mioClick(fileInput.value,dirInput.value)">Reset</button>
-          </div>
-      </div>
-    </div>
-     <div fxFlex [hidden]="isHiddenRecording">
-        <div class="mb-20" fxLayout="column" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
-          <recording-component></recording-component>
-        </div>
-
-    </div>
+  </div>
 </div>
 
 
+  </div>
+  <div fxFlex [hidden]="isHiddenRecording">
+    <recording-component></recording-component>
+  </div>
 

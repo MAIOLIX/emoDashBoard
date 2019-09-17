@@ -15,6 +15,9 @@ export class NewAudioComponent implements OnInit {
   elencoDirectory: string[] = ['emovo', 'custom', 'smartCenter'];
   isHiddenRecording = true;
   isHiddenUpload = true;
+  isDisableReset=true;
+  isDisableUpload=false;
+  isDisableMic=false;
   @ViewChild(RecordingComponentComponent, { static: true })recording: RecordingComponentComponent;
 
   constructor() { }
@@ -31,10 +34,20 @@ export class NewAudioComponent implements OnInit {
 
   startRecording(nomefile, directory, emozione, sesso): void {
     const appo = this.creaNomeFile(nomefile, emozione, sesso);
-    alert(appo);
+    //alert(appo);
+    this.isDisableUpload=true;
+    this.isDisableReset=false;
     this.isHiddenRecording = false;
     this.recording.directory = directory;
     this.recording.nomeFile = appo;
+    this.recording.enableMic();
+  }
+  reset(): void{
+    this.isDisableUpload=false;
+    this.isDisableMic=false;
+    this.isDisableReset=true;
+    this.isHiddenRecording=true;
+
   }
 
 }

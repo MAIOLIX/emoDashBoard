@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import {TimerComponent} from '../timer/timer.component';
 declare var $:any;
 declare var recorderObject: any;
 declare var recordObjectMaiolix:any;
@@ -11,8 +12,11 @@ declare function attivaMic():void;
 @Component({
   selector: 'recording-component',
   templateUrl: './recording-component.component.html',
-  styleUrls: ['./recording-component.component.scss']
+  styleUrls: ['./recording-component.component.scss'],
+
 })
+
+
 export class RecordingComponentComponent implements OnInit {
   breadcrum: string;
   dashboardIcon: string;

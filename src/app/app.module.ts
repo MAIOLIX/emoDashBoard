@@ -16,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AudioContextModule } from 'angular-audio-context';
+//import { TimerComponent } from './FIleManagement/timer/timer.component';
 //import { AudioTableComponent } from './audio-table/audio-table.component';
 
 // AoT requires an exported function for factories

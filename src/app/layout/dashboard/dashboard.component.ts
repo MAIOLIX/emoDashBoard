@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
@@ -22,16 +23,18 @@ export interface RepoData {
 })
 export class DashboardComponent implements OnInit {
 
-    constructor(private _httpClient: HttpClient) {}
-    displayedColumns2 = ['nome', 'posizione', 'audio', 'azione'];
+    constructor(private _httpClient: HttpClient, public dialog: MatDialog) {}
+    displayedColumns2 = ['nome', 'posizione', 'audio', 'azione','cancella'];
     dataSource2 = new MatTableDataSource();
     bucketData: Array<RepoData> = [];
     FileSelected = 'Nessuna Selezione';
     hiddenLoading = true;
     hiddenPanel = true;
+    myDialogRef: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent, { static: true })vocal: VocalAnalyzeComponentComponent;
     @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
+
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -42,6 +45,16 @@ export class DashboardComponent implements OnInit {
         const requestUrl = 'http://emomaiolix.appspot.com/emotions/repository';
         return  this._httpClient.get<RepoData[]>(requestUrl);
     }
+
+    cancellaFileDalServer(filename){
+      const requestUrl = 'http://emomaiolix.appspot.com/emotions/repository';
+      var appo=requestUrl+'?file='+filename;
+      this._httpClient.delete(appo);
+
+
+    }
+
+
     convertiRepoToFileEmo(r: RepoData) {
         let result: EmoAudioFile= {nome: '', url: '', audioData: '', action: ''};
         const url = 'http://emomaiolix.appspot.com/emotions/repository';
@@ -62,6 +75,8 @@ export class DashboardComponent implements OnInit {
         this.text.execAnalysis(url);
         this.FileSelected=nome;
     }
+
+
     ngOnInit() {
         this.hiddenLoading=false;
         this.datiDalServer().subscribe(result => {
@@ -86,5 +101,45 @@ export class DashboardComponent implements OnInit {
         this.FileSelected='Nessuna Selezione';
         this.dataSource2.paginator = this.paginator;
     }
+
+    openDeleteDialog(filename): void {
+      //alert('fino a qui ci siamo');
+      this.myDialogRef = this.dialog.open(DeleteDialog,{
+        width: '250px',
+        data: filename
+      });
+      this.myDialogRef.afterClosed().subscribe(result => {
+        this.deleteFromBucket(result);
+      });
+    }
+    deleteFromBucket(filename): void {
+      if(filename!=undefined)
+        alert('metodo deleteFrom=>' + filename);
+
+    }
 }
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
+
+@Component({
+  selector: 'delete-Dialog',
+  templateUrl: './deleteDialog.html',
+})
+
+export class DeleteDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+
+
 

@@ -17,46 +17,4 @@
   </div>
 </div>
 
-  <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px" >
-  <div fxFlex [hidden]="isHiddenRecording" >
-    <mat-form-field style='padding-left:20px'>
-      <input matInput placeholder="Nome del File" #fileInput >
-    </mat-form-field>
-    <mat-form-field style='padding-left:10px'>
-      <mat-label>Directory Disponibili</mat-label>
-        <select #dirInput matNativeControl required>
-          <option *ngFor="let appo of elencoDirectory" [value]="appo">
-            {{appo}}
-          </option>
-        </select>
-    </mat-form-field>
-  </div>
-</div>
-<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px" >
-  <div fxFlex [hidden]="isHiddenRecording" >
-   <mat-form-field style='padding-left:20px'>
-                    <mat-label>Emozione</mat-label>
-                      <select #EmoInput matNativeControl required>
-                        <option value="NEU">Neutro</option>
-                        <option value="GIO">Gioia</option>
-                        <option value="RAB">Rabbia</option>
-                        <option value="PAU">Paura</option>
-                        <option value="TRI">Tristezza</option>
-                      </select>
-                  </mat-form-field>
-                  <mat-form-field style='padding-left:20px'>
-                    <mat-label>Sesso</mat-label>
-                      <select #SexInput matNativeControl required>
-                        <option value="M">Uomo</option>
-                        <option value="F">Donna</option>
-                      </select>
-                  </mat-form-field>
-  </div>
-</div>
-
-
-  </div>
-  <div fxFlex [hidden]="isHiddenRecording">
-    <recording-component></recording-component>
-  </div>
 

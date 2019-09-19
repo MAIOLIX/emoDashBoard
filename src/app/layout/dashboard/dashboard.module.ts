@@ -6,10 +6,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent, DeleteDialog } from './dashboard.component';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
 import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze-component/text-analyze-component.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
     imports: [
         CommonModule,
@@ -24,8 +24,10 @@ import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze
         MatPaginatorModule,
         MatInputModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent]
+    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent, DeleteDialog],
+    entryComponents: [ DeleteDialog, ]
 })
 export class DashboardModule {}

@@ -1,30 +1,35 @@
-    
+
     <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="hiddenLoading">
         <div fxFlex>
             <img src="assets/images/loading.gif">
         </div>
     </div>
-    
     <div fxFlex>
         <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" [hidden]="hiddenPanel">
-            <div fxFlex>
-                <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Cerca">  
-                </mat-form-field>   
-        </div>
-        
-        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-            <ng-container matColumnDef="nome">
+          <mat-card>
+            <mat-card-content >
+            <div fxFlex >
+                <mat-form-field class="block2">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Cerca" >
+                </mat-form-field >
+
+
+                    <button mat-mini-fab color="primary" id = "stop" (click)="upload();" class="block">
+                  <mat-icon>library_add</mat-icon>
+                </button>
+          </div>
+                <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+            <ng-container matColumnDef="nome" >
                 <th mat-header-cell *matHeaderCellDef>FILE</th>
-                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+                <td mat-cell *matCellDef="let element" class="stile_td"> {{element.nome}} </td>
             </ng-container>
             <ng-container matColumnDef="posizione">
                 <th mat-header-cell *matHeaderCellDef> URL </th>
-                <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+                <td mat-cell *matCellDef="let element" class="stile_td"> {{element.url}} </td>
             </ng-container>
             <ng-container matColumnDef="audio">
-                <th mat-header-cell *matHeaderCellDef>       AUDIO </th>
-                <td  mat-cell *matCellDef="let element">
+                <th mat-header-cell *matHeaderCellDef> AUDIO </th>
+                <td  mat-cell *matCellDef="let element" class="stile_td">
                     <audio controls="controls">
                         Il tuo browser non supporta l'elemento <code>audio</code>.
                         <source src="{{element.audioData}}" type="audio/wav">
@@ -32,20 +37,33 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="azione">
-                <th mat-header-cell *matHeaderCellDef> ANALIZZA </th>
+                <th mat-header-cell *matHeaderCellDef style="text-align:center" > ANALIZZA </th>
                 <td mat-cell *matCellDef="let element">
                  <button mat-icon-button aria-label="Prova" (click)="myClickFunction(element.url,element.nome)">
-                    <mat-icon color='primary'>autorenew</mat-icon>
+                    <mat-icon color='primary'>assessment</mat-icon>
                 </button>
-
-
                  </td>
             </ng-container>
+            <ng-container matColumnDef="cancella">
+                <th mat-header-cell *matHeaderCellDef style="text-align:center"> RIMUOVI </th>
+                <td mat-cell *matCellDef="let element">
+                 <button mat-icon-button aria-label="Prova" (click)="openDeleteDialog(element.nome)">
+                    <mat-icon color='warn'>delete_outline</mat-icon>
+                </button>
+                 </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
 
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </mat-card-content>
+        </mat-card>
+
+
+
+
     </div>
 </div>
 <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">

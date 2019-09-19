@@ -46,10 +46,10 @@ export class DashboardComponent implements OnInit {
         return  this._httpClient.get<RepoData[]>(requestUrl);
     }
 
-    cancellaFileDalServer(filename){
+    cancellaFileDalServer(filename):Observable<any> {
       const requestUrl = 'http://emomaiolix.appspot.com/emotions/repository';
       var appo=requestUrl+'?file='+filename;
-      this._httpClient.delete(appo);
+      return this._httpClient.delete(appo,{responseType: 'text'});
 
 
     }
@@ -101,6 +101,27 @@ export class DashboardComponent implements OnInit {
         this.FileSelected='Nessuna Selezione';
         this.dataSource2.paginator = this.paginator;
     }
+    deleteFileFromServer(filename):void{
+      this.hiddenLoading = false;
+      this.hiddenPanel=true;
+      this.cancellaFileDalServer(filename).subscribe(result =>{
+        this.datiDalServer().subscribe(result => {
+        const dati: EmoAudioFile[] = [];
+        result.forEach(element => {
+          if (element.nome.includes('wav')) {
+              const appo: EmoAudioFile = this.convertiRepoToFileEmo(element);
+              dati.push(appo);
+          }
+
+        });
+        this.dataSource2.data = dati;
+        this.hiddenLoading = true;
+        this.hiddenPanel=false;
+      });
+    });
+
+    }
+
 
     openDeleteDialog(filename): void {
       //alert('fino a qui ci siamo');
@@ -114,7 +135,7 @@ export class DashboardComponent implements OnInit {
     }
     deleteFromBucket(filename): void {
       if(filename!=undefined)
-        alert('metodo deleteFrom=>' + filename);
+       this.deleteFileFromServer(filename);
 
     }
 }

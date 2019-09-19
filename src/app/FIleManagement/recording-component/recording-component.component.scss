@@ -1,0 +1,16 @@
+.aParent div {
+  float: left;
+  clear: none;
+}
+#container {
+  display: flex;
+  flex-direction: row;
+  //width: 100%;
+}
+
+#spacer {
+  flex: 1;
+}
+.ciccio{
+  vertical-align: bottom;
+}

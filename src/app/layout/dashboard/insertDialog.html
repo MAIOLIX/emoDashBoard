@@ -1,0 +1,13 @@
+<h4 mat-dialog-title style="text-align:center;color:red;font-weight:bold">Caricamento Nuovo File</h4>
+<div mat-dialog-content>
+  <h1>{{data}}</h1>
+ </div>
+<div mat-dialog-actions style='justify-content:left'>
+ <button mat-mini-fab color="primary" [mat-dialog-close]="data" cdkFocusInitial>
+  <mat-icon>check_circle</mat-icon>
+ </button>
+ &nbsp;
+  <button mat-mini-fab color="warn" (click)="onNoClick()">
+  <mat-icon>highlight_off</mat-icon>
+  </button>
+</div>

@@ -14,7 +14,7 @@
                 </mat-form-field >
 
 
-                    <button mat-mini-fab color="primary" id = "stop" (click)="upload();" class="block">
+                    <button mat-mini-fab color="primary" id = "stop" (click)="openInsertDialog()" class="block">
                   <mat-icon>library_add</mat-icon>
                 </button>
           </div>
@@ -74,7 +74,7 @@
                     <h5 class="m-0">Analsi Vocale: {{FileSelected}} </h5>
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content style='height:200px'>
+            <mat-card-content style='height:40%'>
               <vocal-analyze-component></vocal-analyze-component>
             </mat-card-content>
         </mat-card>
@@ -86,7 +86,7 @@
                     <h5 class="m-0">Analisi Testuale: <b>{{FileSelected}}</b></h5>
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content style='height:200px'>
+            <mat-card-content style='height:40%'>
               <text-analyze-component></text-analyze-component>
             </mat-card-content>
         </mat-card>

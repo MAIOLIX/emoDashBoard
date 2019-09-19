@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator} from '@angular/material';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, throwMatDialogContentAlreadyAttachedError} from '@angular/material/dialog';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
     hiddenLoading = true;
     hiddenPanel = true;
     myDialogRef: any;
+    myInsertDialogRef : any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent, { static: true })vocal: VocalAnalyzeComponentComponent;
     @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
@@ -75,56 +76,47 @@ export class DashboardComponent implements OnInit {
         this.text.execAnalysis(url);
         this.FileSelected=nome;
     }
-
-
-    ngOnInit() {
-        this.hiddenLoading=false;
-        this.datiDalServer().subscribe(result => {
-            const dati: EmoAudioFile[] = [];
-            result.forEach(element => {
-                if (element.nome.includes('wav')) {
-                    const appo: EmoAudioFile = this.convertiRepoToFileEmo(element);
-                // console.log(element);
-                // const appo: EmoAudioFile = {};
-                // appo.nome = element.nome;
-                 dati.push(appo);
-                }
-
-            });
-            //console.log(dati.length);
-            this.dataSource2.data = dati;
-            this.hiddenLoading = true;
-            this.hiddenPanel=false;
-
-
-        });
-        this.FileSelected='Nessuna Selezione';
-        this.dataSource2.paginator = this.paginator;
-    }
-    deleteFileFromServer(filename):void{
+    refreshFileTable(): void {
       this.hiddenLoading = false;
-      this.hiddenPanel=true;
-      this.cancellaFileDalServer(filename).subscribe(result =>{
-        this.datiDalServer().subscribe(result => {
+      this.hiddenPanel = true;
+      this.datiDalServer().subscribe(result => {
         const dati: EmoAudioFile[] = [];
         result.forEach(element => {
-          if (element.nome.includes('wav')) {
-              const appo: EmoAudioFile = this.convertiRepoToFileEmo(element);
-              dati.push(appo);
-          }
-
+            if (element.nome.includes('wav')) {
+                const appo: EmoAudioFile = this.convertiRepoToFileEmo(element);
+                dati.push(appo);
+            }
         });
         this.dataSource2.data = dati;
         this.hiddenLoading = true;
-        this.hiddenPanel=false;
+        this.hiddenPanel = false;
       });
-    });
-
     }
 
+    ngOnInit() {
+        this.refreshFileTable();
+        this.FileSelected='Nessuna Selezione';
+        this.dataSource2.paginator = this.paginator;
+    }
+    deleteFileFromServer(filename): void {
+      this.hiddenLoading = false;
+      this.hiddenPanel = true;
+      this.cancellaFileDalServer(filename).subscribe(result => {
+        this.refreshFileTable();
+      });
+
+    }
+    openInsertDialog(): void {
+      this.myInsertDialogRef=this.dialog.open(InsertDialog,{
+        width: '250px',
+        data: 'Insert dialog'
+      });
+      this.myInsertDialogRef.afterClosed().subscribe(result=>{
+        alert('chiusura Insert');
+      });
+    }
 
     openDeleteDialog(filename): void {
-      //alert('fino a qui ci siamo');
       this.myDialogRef = this.dialog.open(DeleteDialog,{
         width: '250px',
         data: filename
@@ -159,6 +151,22 @@ export class DeleteDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
+@Component({
+  selector: 'insert-Dialog',
+  templateUrl: './insertDialog.html',
+})
+export class InsertDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DeleteDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+    onNoClick(): void {
+      this.dialogRef.close();
+
+    }
+
+
 }
 
 

@@ -6,7 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent, DeleteDialog } from './dashboard.component';
+import { DashboardComponent, DeleteDialog,InsertDialog } from './dashboard.component';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
 import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze-component/text-analyze-component.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -27,7 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatDialogModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent, DeleteDialog],
-    entryComponents: [ DeleteDialog, ]
+    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent, DeleteDialog,InsertDialog],
+    entryComponents: [ DeleteDialog, InsertDialog, ]
 })
 export class DashboardModule {}

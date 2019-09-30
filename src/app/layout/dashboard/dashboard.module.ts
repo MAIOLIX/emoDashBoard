@@ -9,6 +9,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent, DeleteDialog,InsertDialog } from './dashboard.component';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
 import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze-component/text-analyze-component.component';
+import {UploadAudioComponent} from '../../FIleManagement/upload-audio/upload-audio.component';
 import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
     imports: [
@@ -27,7 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatDialogModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})
     ],
-    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent, DeleteDialog,InsertDialog],
+    declarations: [DashboardComponent, VocalAnalyzeComponentComponent, TextAnalyzeComponentComponent, DeleteDialog,InsertDialog,UploadAudioComponent],
     entryComponents: [ DeleteDialog, InsertDialog, ]
 })
 export class DashboardModule {}

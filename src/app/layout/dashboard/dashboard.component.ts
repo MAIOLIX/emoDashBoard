@@ -108,11 +108,13 @@ export class DashboardComponent implements OnInit {
     }
     openInsertDialog(): void {
       this.myInsertDialogRef=this.dialog.open(InsertDialog,{
-        width: '250px',
+        width: '500px',
+        height:'500px',
         data: 'Insert dialog'
       });
       this.myInsertDialogRef.afterClosed().subscribe(result=>{
-        alert('chiusura Insert');
+        alert('Eseguire il reload dei dati.......');
+        alert(result);
       });
     }
 

@@ -52,3 +52,12 @@ md-spinner {
 .stile_td {
     text-align: left;
 }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 100%;
+}

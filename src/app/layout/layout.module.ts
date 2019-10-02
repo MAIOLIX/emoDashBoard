@@ -16,7 +16,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
-
+import {TimerComponent} from '../FIleManagement/timer/timer.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -30,7 +30,7 @@ import { Screen2Component } from './screen2/screen2.component';
         MatListModule,
         TranslateModule
     ],
-    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, ]
+    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent]
 
 })
 export class LayoutModule { }

@@ -1,18 +1,50 @@
-<h4 mat-dialog-title style="text-align:center;color:red;font-weight:bold">Caricamento Nuovo File</h4>
-<div mat-dialog-content>
-  <h1>{{data}}</h1>
-  <upload-audio></upload-audio>
- </div>
-<div mat-dialog-actions style='justify-content:left;position:absolute;bottom:55px' >
- <button mat-mini-fab color="primary" >
-      <mat-icon>mic</mat-icon>
-     </button>
-  &nbsp;
- <button mat-mini-fab color="primary" [mat-dialog-close]="data" cdkFocusInitial>
-  <mat-icon>check_circle</mat-icon>
- </button>
- &nbsp;
-  <button mat-mini-fab color="warn" (click)="onNoClick()">
+<h4 mat-dialog-title style="text-align:center;color:red;font-weight:bold">Caricamento Nuovo File
+<button mat-mini-fab color="warn" (click)="onNoClick()" style="float: right">
   <mat-icon>highlight_off</mat-icon>
   </button>
+</h4>
+<div >
+
+  <mat-form-field>
+    <input matInput placeholder="Nome File" >
+  </mat-form-field>
+ <mat-form-field>
+    <mat-select placeholder="Cartella" >
+      <mat-option value="emovo">Emovo</mat-option>
+      <mat-option value="custom">Custom</mat-option>
+      <mat-option value="smartcenter">Smart Center</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Emozione">
+      <mat-option value="NEU">Neutro</mat-option>
+      <mat-option value="GIO">Gioia</mat-option>
+      <mat-option value="PAU">Paura</mat-option>
+      <mat-option value="RAB">Rabbia</mat-option>
+      <mat-option value="TRI">Tristezza</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Genere">
+      <mat-option value="M">Uomo</mat-option>
+      <mat-option value="F">Donna</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+<div>
+  <button mat-fab color="primary" >
+      <mat-icon>mic</mat-icon>
+  </button>
+  &nbsp;
+  <button mat-fab color="primary">
+      <mat-icon>folder_open</mat-icon>
+     </button>
+ </div>
+ <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" >
+        <div fxFlex>
+            <img src="assets/images/inRec.gif">
+        </div>
+    </div>
+
 </div>

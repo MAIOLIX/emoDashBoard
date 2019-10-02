@@ -26,7 +26,9 @@ export class RecordingComponentComponent implements OnInit {
   nomeFile: string;
   directory: string;
   colorRec:string ="warn";
-
+  isStopRecDisabled = true;
+  isRecStartDisabled = false;
+  isResultHidden = true;
 
   constructor() {}
 
@@ -39,16 +41,26 @@ export class RecordingComponentComponent implements OnInit {
 
   start(button): void {
     //attivaMic();
-    startRecording(button);
-  	this.isOn = true;
-    this.isOff = false;
+    //startRecording(button);
+    this.isRecStartDisabled=true;
+    this.isStopRecDisabled=false;
   }
 
   stop(button): void {
-    stopRecording(button);
-  	this.isOn = false;
-    this.isOff = true;
+    //stopRecording(button);
+    this.isRecStartDisabled=false;
+    this.isStopRecDisabled=true;
+    this.isResultHidden=false;
   }
+  deleteRegistration(): void {
+    this.isResultHidden=true;
+    this.isStopRecDisabled=true;
+    this.isRecStartDisabled=false;
+
+  }
+
+
+
   upload(): void{
     uploadOnBucket("mimmo2","custom");
 

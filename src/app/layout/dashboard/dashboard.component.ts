@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
     FileSelected = 'Nessuna Selezione';
     hiddenLoading = true;
     hiddenPanel = true;
+    hiddenNew = true;
     myDialogRef: any;
     myInsertDialogRef : any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -54,7 +55,14 @@ export class DashboardComponent implements OnInit {
 
 
     }
-
+    apriInserimento(): void {
+      this.hiddenPanel = true;
+      this.hiddenNew = false;
+    }
+    chiudiInserimento(): void {
+      this.hiddenPanel = false;
+      this.hiddenNew = true;
+    }
 
     convertiRepoToFileEmo(r: RepoData) {
         let result: EmoAudioFile= {nome: '', url: '', audioData: '', action: ''};
@@ -109,7 +117,7 @@ export class DashboardComponent implements OnInit {
     openInsertDialog(): void {
       this.myInsertDialogRef=this.dialog.open(InsertDialog,{
         width: '500px',
-        height:'500px',
+        height:'700px',
         data: 'Insert dialog'
       });
       this.myInsertDialogRef.afterClosed().subscribe(result=>{

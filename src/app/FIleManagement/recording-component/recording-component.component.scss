@@ -1,16 +1,22 @@
 .aParent div {
-  float: left;
-  clear: none;
+    float: left;
+    clear: none;
 }
+
 #container {
-  display: flex;
-  flex-direction: row;
-  //width: 100%;
+    display: flex;
+    flex-direction: row;
+    //width: 100%;
 }
 
 #spacer {
-  flex: 1;
+    flex: 1;
 }
-.ciccio{
-  vertical-align: bottom;
+
+.ciccio {
+    vertical-align: bottom;
+}
+
+.mat-icon {
+    vertical-align: bottom;
 }

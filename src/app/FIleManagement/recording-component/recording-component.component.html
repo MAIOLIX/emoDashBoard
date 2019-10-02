@@ -1,37 +1,31 @@
 
 
-<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="1px" class="aParent">
-  <div id="container" fxFlex>
-    <timer></timer>
-   <div class="ciccio">
-    &nbsp;
-    <button mat-mini-fab color="warn" id = "record" (click)="start(this);"  >
-      <mat-icon>record_voice_over</mat-icon>
-    </button>
-		&nbsp;
-    <button mat-mini-fab color="warn" id = "stop" (click)="stop(this);">
-      <mat-icon>stop</mat-icon>
-    </button>
-    &nbsp;
-  </div>
-  </div>
-</div>
-<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="1px" class="aParent">
-  <div id="container" fxFlex >
+  <div fxlayout="column">
+    <div fxFlex="50">
+      &nbsp;
+      <button mat-mini-fab color="warn" id = "record" (click)="start(this);" [disabled]="isRecStartDisabled" >
+        <mat-icon>record_voice_over</mat-icon>
+      </button>
+		  &nbsp;
+      <button mat-mini-fab color="warn" id = "stop" (click)="stop(this);" [disabled]=" isStopRecDisabled">
+        <mat-icon>stop</mat-icon>
+      </button>
+    </div>
+    <br>
+<div [hidden]="isResultHidden" >
+ <div  style="display:flex;align-items:center">
   <audio controls="controls">
       Il tuo browser non supporta l'elemento <code>audio</code>.
       <source src="http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav" type="audio/wav">
     </audio>
     &nbsp;
-    <button mat-fab color="primary" id = "stop" (click)="upload();" >
+    <button mat-mini-fab color="primary" id = "upload" (click)="upload();" >
       <mat-icon>cloud_upload</mat-icon>
     </button>
     &nbsp;
-     <button mat-fab color="primary" id = "stop" (click)="upload();" >
+     <button mat-mini-fab color="primary" id = "del" (click)="deleteRegistration();" >
       <mat-icon>delete</mat-icon>
     </button>
+ </div>
   </div>
-
-
-
-</div>
+  </div>

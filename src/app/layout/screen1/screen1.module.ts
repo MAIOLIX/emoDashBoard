@@ -15,7 +15,7 @@ import {RecordingComponentComponent} from '../../FIleManagement/recording-compon
 import {TimerComponent} from '../../FIleManagement/timer/timer.component';
 import { from } from 'rxjs';
 @NgModule({
-  declarations: [Screen1Component, AudioTableComponent, NewAudioComponent,RecordingComponentComponent,TimerComponent],
+  declarations: [Screen1Component, AudioTableComponent, NewAudioComponent,RecordingComponentComponent],
   imports: [
     CommonModule,
     Screen1RoutingModule,

@@ -61,6 +61,9 @@ export class DashboardComponent implements OnInit {
       this.hiddenPanel = true;
       this.hiddenNew = false;
       this.hiddenRec=true;
+      this.vocal.hiddenPanel = true;
+      this.text.divDataHidden = true;
+      this.FileSelected = 'Nessuna Selezione';
     }
     chiudiInserimento(): void {
       this.hiddenPanel = false;

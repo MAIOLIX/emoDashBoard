@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
     hiddenLoading = true;
     hiddenPanel = true;
     hiddenNew = true;
+    hiddenRec = true;
     myDialogRef: any;
     myInsertDialogRef : any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -59,6 +60,7 @@ export class DashboardComponent implements OnInit {
     apriInserimento(): void {
       this.hiddenPanel = true;
       this.hiddenNew = false;
+      this.hiddenRec=true;
     }
     chiudiInserimento(): void {
       this.hiddenPanel = false;
@@ -117,9 +119,11 @@ export class DashboardComponent implements OnInit {
      console.log('vengo da dashboard');
     }
     avviaRegistrazione(filename, directory, emozione, genere): void {
-      var appo= filename + '-' + emozione + '-' + genere;
+      const appo = filename + '-' + emozione + '-' + genere + '-' + Date.now();
       this.recording.nomeFile = appo;
       this.recording.directory = directory;
+      this.hiddenRec = false;
+
       //this.recording.funcAppo=appo();
       //alert(appo);
     }

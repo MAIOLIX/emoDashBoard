@@ -10,7 +10,7 @@ declare function stopRecording(button): void;
 declare function stopRecording2(callback): void;
 
 declare function getRecorder(): any;
-declare function uploadOnBucket(filename, directory): any;
+declare function uploadOnBucket(filename, directory, callback): any;
 declare function attivaMic(): void;
 declare function creaLink(callback): string;
 
@@ -82,15 +82,28 @@ export class RecordingComponentComponent implements OnInit {
     this.rec.clear();
   }
 
+  pippo(): void {
+    alert('salvataggio su Bucket eseguito');
+      this.isResultHidden = true;
+      this.isStopRecDisabled = true;
+      this.isRecStartDisabled = false;
+      this.refreshTable.emit();
+  }
+
   upload(): void{
 
-    uploadOnBucket(this.nomeFile,this.directory);
-    alert('salvataggio su Bucket eseguito');
-    this.isResultHidden = true;
-    this.isStopRecDisabled = true;
-    this.isRecStartDisabled = false;
-    setTimeout(function(){},1000);
-    this.refreshTable.emit();
+    uploadOnBucket(this.nomeFile,this.directory,()=>{
+      setTimeout(() => {
+        this.refreshTable.emit();
+        this.isResultHidden = true;
+        this.isResultHidden = true;
+        this.isStopRecDisabled = true;
+        this.isRecStartDisabled = false;
+        this.rec.clear();
+        alert('salvataggio su Bucket eseguito');
+      }, 1000);
+
+    });
 
   }
 }

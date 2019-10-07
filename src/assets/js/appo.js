@@ -77,7 +77,7 @@ function createDownloadLink() {
 }
 
 
-function uploadOnBucket(filename, directory) {
+function uploadOnBucket(filename, directory,callback) {
     const endpoint = 'https://emomaiolix.appspot.com/emotions/repository';
     var xhr = new XMLHttpRequest();
     if (directory != undefined)
@@ -94,6 +94,7 @@ function uploadOnBucket(filename, directory) {
         //alert('finito forse');
     });
     recorder.clear();
+    callback();
 }
 
 function getRecorder() {

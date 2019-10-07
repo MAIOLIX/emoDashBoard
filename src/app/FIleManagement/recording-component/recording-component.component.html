@@ -1,5 +1,3 @@
-
-
   <div fxlayout="column">
     <div fxFlex="50">
       &nbsp;
@@ -10,13 +8,15 @@
       <button mat-mini-fab color="warn" id = "stop" (click)="stop(this);" [disabled]=" isStopRecDisabled">
         <mat-icon>stop</mat-icon>
       </button>
+      &nbsp;
+      <h4>{{nomeFile}}</h4>
     </div>
     <br>
 <div [hidden]="isResultHidden" >
  <div  style="display:flex;align-items:center">
-  <audio controls="controls">
+  <audio id="audio" controls="controls">
       Il tuo browser non supporta l'elemento <code>audio</code>.
-      <source src="http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav" type="audio/wav">
+      <source src="{{fileTmpUrl}}" type="audio/wav">
     </audio>
     &nbsp;
     <button mat-mini-fab color="primary" id = "upload" (click)="upload();" >

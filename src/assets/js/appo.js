@@ -36,11 +36,24 @@ function stopRecording(button) {
     //recorder.clear();
 
 }
-function creaLink(){
-  recorder.exportWAV(function(blob){
-    var url = URL.createObjectURL(blob);
-    return url;
-  });
+
+function stopRecording2(callback) {
+    recorder && recorder.stop();
+    console.log('Stopped recording.');
+
+    callback(recorder);
+
+}
+
+
+function creaLink(callback) {
+    recorder.exportWAV(function(blob) {
+        var url = URL.createObjectURL(blob);
+        //alert(url);
+        recorder.clear();
+        //return url;
+        callback(url);
+    });
 
 }
 
@@ -62,6 +75,7 @@ function createDownloadLink() {
         recordingslist.appendChild(li);
     });
 }
+
 
 function uploadOnBucket(filename, directory) {
     const endpoint = 'https://emomaiolix.appspot.com/emotions/repository';
@@ -88,12 +102,12 @@ function getRecorder() {
 }
 
 function enableMic() {
-   __log('entrato in enableMic');
+    __log('entrato in enableMic');
     try {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
         window.URL = window.URL || window.webkitURL;
-        var constraints = { audio: true, video:false }
+        var constraints = { audio: true, video: false }
         audio_context = new AudioContext();
 
         console.log('Audio context set up.');
@@ -131,20 +145,20 @@ var recordObjectMaiolix = (function() {
     }
 })(recordObjectMaiolix || {});
 
-function attivaMic(){
-  try {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-    window.URL = window.URL || window.webkitURL;
-    audio_context=new AudioContext;
-    console.log('Audio context set up.');
-    console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
-  } catch (error) {
-    console.log('No web audio support in this browser!');
-  }
-  navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
-    console.log('No live audio input: ' + e);
-  });
+function attivaMic() {
+    try {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+        window.URL = window.URL || window.webkitURL;
+        audio_context = new AudioContext;
+        console.log('Audio context set up.');
+        console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+    } catch (error) {
+        console.log('No web audio support in this browser!');
+    }
+    navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
+        console.log('No live audio input: ' + e);
+    });
 }
 
 
@@ -168,7 +182,7 @@ var recorderObject = (function() {
                     }
 
                     navigator.getUserMedia({ audio: true }, startUserMedia, function(e) {
-                      console.log('No live audio input: ' + e);
+                        console.log('No live audio input: ' + e);
                     });
                 };
             })(window.jQuery);

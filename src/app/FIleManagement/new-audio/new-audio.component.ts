@@ -40,7 +40,7 @@ export class NewAudioComponent implements OnInit {
     this.isHiddenRecording = false;
     this.recording.directory = directory;
     this.recording.nomeFile = appo;
-    this.recording.enableMic();
+    //this.recording.enableMic();
   }
   reset(): void{
     this.isDisableUpload=false;

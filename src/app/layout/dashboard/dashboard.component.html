@@ -75,10 +75,11 @@
               <div flFlex="60" >
                <div fxFlex >
                <mat-form-field style="margin-left:10px;">
-                <input matInput placeholder="Nome File" >
+                <input matInput #nomeFile placeholder="NomeFile" >
              </mat-form-field>
              <mat-form-field style="margin-left:10px;">
-              <mat-select placeholder="Cartella" >
+             <mat-label>Sotto cartella di destinazione</mat-label>
+              <mat-select #folder placeholder="Cartella" >
                 <mat-option value="emovo">Emovo</mat-option>
                 <mat-option value="custom">Custom</mat-option>
                 <mat-option value="smartcenter">Smart Center</mat-option>
@@ -87,7 +88,8 @@
              </div>
              <div fxFlex>
                 <mat-form-field style="margin-left:10px;">
-                  <mat-select placeholder="Emozione">
+                <mat-label>Tipo Emozione</mat-label>
+                  <mat-select #emotion placeholder="Emozione">
                     <mat-option value="NEU">Neutro</mat-option>
                     <mat-option value="GIO">Gioia</mat-option>
                     <mat-option value="PAU">Paura</mat-option>
@@ -96,7 +98,8 @@
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field style="margin-left:10px;">
-                  <mat-select placeholder="Genere">
+                <mat-label>Genere</mat-label>
+                  <mat-select  #gender placeholder="Genere">
                     <mat-option value="M">Uomo</mat-option>
                     <mat-option value="F">Donna</mat-option>
                   </mat-select>
@@ -104,21 +107,21 @@
                 </div>
                  <div fxFlex >
                     &nbsp;
-                    <button mat-fab color="primary"  (click)="startRecording(fileInput.value,dirInput.value,EmoInput.value,SexInput.value)" [disabled]="isDisableMic">
+                    <button mat-fab color="primary"  (click)="avviaRegistrazione(nomeFile.value,folder.value,emotion.value,gender.value)" [disabled]="isDisableMic">
                       <mat-icon>mic</mat-icon>
                     </button>
                       &nbsp;
-                    <button mat-fab color="primary" [disabled]="isDisableUpload"  (click)="mioClick(fileInput.value,dirInput.value)">
+                    <button mat-fab color="primary" [disabled]="true"  (click)="mioClick(fileInput.value,dirInput.value)">
                       <mat-icon>folder_open</mat-icon>
                     </button>
                       &nbsp;
-                    <button mat-fab color="primary" [disabled]="isDisableReset" (click)="reset()">
+                    <button mat-fab color="primary" [disabled]="true" (click)="reset()">
                       <mat-icon>restore</mat-icon>
                     </button>
                   </div>
               </div>
-              <div fxFlex="40" fxFlexOffset="10" >
-                <recording-component></recording-component>
+              <div fxFlex="40" fxFlexOffset="10"  >
+                <recording-component (refreshTable)="chiudiInserimento()"></recording-component>
               </div>
 
             </div>

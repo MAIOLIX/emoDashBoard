@@ -1,14 +1,19 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Input, Output, EventEmitter  } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {TimerComponent} from '../timer/timer.component';
-declare var $:any;
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
+declare var $: any;
 declare var recorderObject: any;
-declare var recordObjectMaiolix:any;
-declare function startRecording(button) : void;
-declare function stopRecording(button) : void;
+declare var recordObjectMaiolix: any;
+declare function startRecording(button): void;
+declare function stopRecording(button): void;
+declare function stopRecording2(callback): void;
+
 declare function getRecorder(): any;
 declare function uploadOnBucket(filename, directory): any;
-declare function attivaMic():void;
+declare function attivaMic(): void;
+declare function creaLink(callback): string;
+
 @Component({
   selector: 'recording-component',
   templateUrl: './recording-component.component.html',
@@ -18,57 +23,74 @@ declare function attivaMic():void;
 
 
 export class RecordingComponentComponent implements OnInit {
+
+  @Output() funcAppo = new EventEmitter();
+  @Output() refreshTable = new EventEmitter();
   breadcrum: string;
   dashboardIcon: string;
   audioIcon: string;
   isOn: boolean;
   isOff: boolean;
   nomeFile: string;
+
   directory: string;
   colorRec:string ="warn";
   isStopRecDisabled = true;
   isRecStartDisabled = false;
   isResultHidden = true;
+  fileTmpUrl = 'http://emomaiolix.appspot.com/emotions/repository?file=cliente1.wav';
+  rec: any;
+
 
   constructor() {}
 
   ngOnInit() {
-    this.isOn = false;
-  	this.isOff = true;
+    this.isRecStartDisabled = false;
+    this.isStopRecDisabled = true;
+    this.isResultHidden = true;
     recorderObject.recorder();
-
   }
 
   start(button): void {
-    //attivaMic();
-    //startRecording(button);
-    this.isRecStartDisabled=true;
-    this.isStopRecDisabled=false;
+    startRecording(button);
+    this.isRecStartDisabled = true;
+    this.isStopRecDisabled = false;
+    this.isResultHidden = true;
+    //this.funcAppo.emit();
+
   }
 
   stop(button): void {
-    //stopRecording(button);
-    this.isRecStartDisabled=false;
-    this.isStopRecDisabled=true;
-    this.isResultHidden=false;
+    stopRecording2((result) => {
+      result.exportWAV(function(blob) {
+        // tslint:disable-next-line:prefer-const
+        var url = URL.createObjectURL(blob);
+        (<HTMLAudioElement>document.getElementById("audio")).src = url;
+        //alert(url);
+      });
+      this.rec = result;
+      this.isRecStartDisabled = true;
+      this.isStopRecDisabled = true;
+      this.isResultHidden = false;
+    });
   }
+
   deleteRegistration(): void {
-    this.isResultHidden=true;
-    this.isStopRecDisabled=true;
-    this.isRecStartDisabled=false;
-
+    this.isResultHidden = true;
+    this.isStopRecDisabled = true;
+    this.isRecStartDisabled = false;
+    this.rec.clear();
   }
-
-
 
   upload(): void{
-    uploadOnBucket("mimmo2","custom");
+
+    uploadOnBucket(this.nomeFile,this.directory);
+    alert('salvataggio su Bucket eseguito');
+    this.isResultHidden = true;
+    this.isStopRecDisabled = true;
+    this.isRecStartDisabled = false;
+    setTimeout(function(){},1000);
+    this.refreshTable.emit();
 
   }
-  enableMic():void {
-   attivaMic();
-
-  }
-
-
 }

@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {VocalAnalyzeComponentComponent} from '../../DashboardAnalyze/vocal-analyze-component/vocal-analyze-component.component';
 import {TextAnalyzeComponentComponent} from '../../DashboardAnalyze/text-analyze-component/text-analyze-component.component';
-
+import {RecordingComponentComponent} from '../../FIleManagement/recording-component/recording-component.component';
 export interface EmoAudioFile {
     nome: string;
     url: string;
@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(VocalAnalyzeComponentComponent, { static: true })vocal: VocalAnalyzeComponentComponent;
     @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
+    @ViewChild(RecordingComponentComponent, {static: true})recording: RecordingComponentComponent;
 
 
     applyFilter(filterValue: string) {
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
     chiudiInserimento(): void {
       this.hiddenPanel = false;
       this.hiddenNew = true;
+      this.refreshFileTable();
     }
 
     convertiRepoToFileEmo(r: RepoData) {
@@ -100,12 +102,28 @@ export class DashboardComponent implements OnInit {
         this.hiddenPanel = false;
       });
     }
+    refreshDopoInserimento(): void {
+      this.refreshFileTable();
+      this.hiddenNew=true;
+
+    }
 
     ngOnInit() {
         this.refreshFileTable();
         this.FileSelected='Nessuna Selezione';
         this.dataSource2.paginator = this.paginator;
     }
+    appo(): void {
+     console.log('vengo da dashboard');
+    }
+    avviaRegistrazione(filename, directory, emozione, genere): void {
+      var appo= filename + '-' + emozione + '-' + genere;
+      this.recording.nomeFile = appo;
+      this.recording.directory = directory;
+      //this.recording.funcAppo=appo();
+      //alert(appo);
+    }
+
     deleteFileFromServer(filename): void {
       this.hiddenLoading = false;
       this.hiddenPanel = true;

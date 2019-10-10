@@ -39,6 +39,11 @@ export class DashboardComponent implements OnInit {
     @ViewChild(TextAnalyzeComponentComponent, { static: true })text: TextAnalyzeComponentComponent;
     @ViewChild(RecordingComponentComponent, {static: true})recording: RecordingComponentComponent;
 
+    immediateAnalysis() {
+      this.recording.getBlob((b) => {
+        this.vocal.execAnalysis2(b, this.recording.nomeFile);
+      });
+    }
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace

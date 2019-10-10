@@ -36,12 +36,19 @@ export class VocalAnalyzeComponentComponent implements OnInit {
   hiddenLoading = true;
   hiddenPanel = true;
   FileChoosed = '';
-  
+
   AngryEmotion ="" ;
   NeutralEmotion ="";
   HappyEmotion = "";
   SadEmotion = "";
   FearEmotion = "";
+
+  getSentimentUsingForm(myBlob: any, nomeFile: string): Observable<SentimentAPI>{
+    const endpoint = 'https://emomaiolix.appspot.com/emotions/audio/analyzeByForm';
+    const formData = new FormData();
+    formData.append('file', myBlob, nomeFile);
+    return this._httpClient.post<SentimentAPI>(endpoint, formData);
+  }
 
 
   getSentiment(file: string): Observable<SentimentAPI> {
@@ -70,30 +77,39 @@ export class VocalAnalyzeComponentComponent implements OnInit {
     return result;
 
   }
-  execAnalysis(url: string): void {
-    //alert(url);
-    this.getSentiment(url).subscribe(result=>{
-      this.messaggio=JSON.stringify(result);
-      
+  execAnalysis2(myBlob: any, nomeFile: string){
+      //alert(myBlob);
 
-
-
-
-      this.AngryEmotion=(result.anger*100).toFixed(1)+"%";
-      this.NeutralEmotion=(result.netrual*100).toFixed(1)+"%";
-      this.SadEmotion=(result.sadness*100).toFixed(1)+"%";
-      this.FearEmotion=(result.fear*100).toFixed(1)+"%";
-      this.HappyEmotion=(result.happiness*100).toFixed(1)+"%";
-      
+      //alert(nomeFile);
       this.hiddenLoading = true;
       this.hiddenPanel = false;
-      
-
+      this.getSentimentUsingForm(myBlob, nomeFile).subscribe(result => {
+      this.messaggio = JSON.stringify(result);
+      //alert(this.messaggio);
+      this.AngryEmotion = (result.anger * 100).toFixed(1) + '%';
+      this.NeutralEmotion = (result.netrual*100).toFixed(1) + '%';
+      this.SadEmotion = (result.sadness * 100).toFixed(1) + '%';
+      this.FearEmotion = (result.fear * 100).toFixed(1) + '%';
+      this.HappyEmotion = (result.happiness * 100).toFixed(1) + '%';
+      //callback();
     });
-
   }
 
-  ngOnInit() {
-      }
+
+  execAnalysis(url: string): void {
+    //alert(url);
+    this.getSentiment(url).subscribe(result => {
+      this.messaggio = JSON.stringify(result);
+      this.AngryEmotion = (result.anger * 100).toFixed(1) + '%';
+      this.NeutralEmotion = (result.netrual*100).toFixed(1) + '%';
+      this.SadEmotion = (result.sadness * 100).toFixed(1) + '%';
+      this.FearEmotion = (result.fear * 100).toFixed(1) + '%';
+      this.HappyEmotion = (result.happiness * 100).toFixed(1) + '%';
+      this.hiddenLoading = true;
+      this.hiddenPanel = false;
+    });
+  }
+
+  ngOnInit() {}
 
 }

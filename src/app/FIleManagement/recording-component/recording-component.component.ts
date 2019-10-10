@@ -32,7 +32,7 @@ export class RecordingComponentComponent implements OnInit {
   isOn: boolean;
   isOff: boolean;
   nomeFile: string;
-
+  appoBlob: any;
   directory: string;
   colorRec:string ="warn";
   isStopRecDisabled = true;
@@ -65,6 +65,7 @@ export class RecordingComponentComponent implements OnInit {
       result.exportWAV(function(blob) {
         // tslint:disable-next-line:prefer-const
         var url = URL.createObjectURL(blob);
+        //alert(url);
         (<HTMLAudioElement>document.getElementById("audio")).src = url;
         //alert(url);
       });
@@ -90,9 +91,9 @@ export class RecordingComponentComponent implements OnInit {
       this.refreshTable.emit();
   }
 
-  upload(): void{
+  upload(): void {
 
-    uploadOnBucket(this.nomeFile,this.directory,()=>{
+    uploadOnBucket(this.nomeFile, this.directory, () => {
       setTimeout(() => {
         this.refreshTable.emit();
         this.isResultHidden = true;
@@ -104,6 +105,17 @@ export class RecordingComponentComponent implements OnInit {
       }, 1000);
 
     });
-
   }
+  getBlob(callback): any {
+    this.rec.exportWAV(function(blob) {
+        callback(blob);
+    });
+  }
+
+  immediateAnalysis(): void {
+    //alert('quindi?');
+    this.funcAppo.emit();
+  }
+
+
 }
